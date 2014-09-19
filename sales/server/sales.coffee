@@ -1,5 +1,4 @@
 Meteor.startup ->
-  
   # bootstrap code for demo - seed accounts and data
   # find the userids created for the two sample users; create users if not found
   joe = Meteor.users.findOne("emails.address": "joe@dwtestonly.com")
@@ -18,9 +17,8 @@ Meteor.startup ->
       email: "sing@dwtestonly.com"
       password: "abc123"
 
-  
-  # The code below may fail when executed the first time since Accounts.createUser 
-  # is async even on server - joe._id may not be ready yet. A reboot (auto) will 
+  # The code below may fail when executed the first time since Accounts.createUser
+  # is async even on server - joe._id may not be ready yet. A reboot (auto) will
   # fix it with the accounts data in place.
   Sales2013.remove {}
   Sales2013.insert
@@ -46,7 +44,3 @@ Meteor.startup ->
         fields:
           region: 1
           total: 1
-
-
-  return
-

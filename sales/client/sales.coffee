@@ -4,9 +4,7 @@ updateTable = (inst, cur) ->
   cur.forEach (sale) ->
     inst.$("#" + sale._id + "_region").text sale.region
     inst.$("#" + sale._id + "_total").text sale.total
-    return
 
-  return
 plotit = (inst, cur) ->
   # do not render pie if no data
   return  if cur.count() is 0
@@ -16,15 +14,14 @@ plotit = (inst, cur) ->
       sale.region
       sale.total
     ]
-    return
 
   inst.$.jqplot "chart", [data],
     seriesDefaults:
-      
+
       # Make this a pie chart.
       renderer: $.jqplot.PieRenderer
       rendererOptions:
-        
+
         # Put data labels on the pie slices.
         # By default, labels show the percentage of the slice.
         showDataLabels: true
@@ -33,7 +30,6 @@ plotit = (inst, cur) ->
       show: true
       location: "e"
 
-  return
 updateDB = (value, settings) ->
   console.log this
   console.log @getAttribute("sid")
@@ -47,7 +43,6 @@ updateDB = (value, settings) ->
       $set:
         total: parseInt(val)
 
-    return
   ), 1000
   value
 Sales2013 = new Meteor.Collection("regional_sales")
@@ -59,9 +54,6 @@ Template.piechart.rendered = ->
   Deps.autorun ->
     plotit this, Sales2013.find({})
     updateTable this, Sales2013.find({})
-    return
-
-  return
 
 Template.datapoint.rendered = ->
   @$(".editable").editable updateDB,
@@ -69,5 +61,3 @@ Template.datapoint.rendered = ->
     style: "inherit"
     width: 100
     submit: "OK"
-
-  return
